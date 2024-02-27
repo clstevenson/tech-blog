@@ -1,0 +1,32 @@
+{
+  "name": "tech-blog",
+  "version": "1.0.0",
+  "description": "Full stack CMS-style tech blog with authentication",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "watch": "nodemon server.js",
+    "seed": "node seeds/seed.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clstevenson/tech-blog.git"
+  },
+  "author": "Chris Stevenson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/clstevenson/tech-blog/issues"
+  },
+  "homepage": "https://github.com/clstevenson/tech-blog#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "connect-session-sequelize": "^7.1.7",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.2",
+    "express-session": "^1.18.0",
+    "mysql2": "^3.9.2",
+    "sequelize": "^6.37.1"
+  }
+}
