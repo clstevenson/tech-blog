@@ -4,6 +4,7 @@
 
 const router = require('express').Router();
 const { User } = require('../../models');
+const { Op } = require('sequelize');
 
 // create new user: /api/users POST route
 // input username, email, and password as JSON
@@ -30,9 +31,7 @@ router.post('/login', async (req, res) => {
     const userData = await User.findOne({
       where: {
         // user may input either username or password on login form
-        // the following doesn't seem to work! Not sure why...
-        // [Op.or]: [{email: req.body.username}, {username: req.body.username}]
-        username: req.body.username
+        [Op.or]: [{email: req.body.username}, {username: req.body.username}]
       }
     });
 

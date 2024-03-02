@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Tech Blog</title>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a href="#"><button>Home</button></a>
+                <a href="#"><button>Dashboard</button></a>
+                {{#if logged_in}}
+                <a href="#"><button id="logout">Logout</button></a>
+                {{else}}
+                <a href="#"><button id="login">Login</button></a>
+                {{/if}}
+            </nav>
+            <h1>The Tech Blog</h1>
+        </header>
+        <main>
+            {{{body}}}
+        </main>
+        <script src="/js/main.js"></script>
+    </body>
+</html>
