@@ -1,6 +1,6 @@
 <!-- list of posts -->
 {{#each posts as |post|}}
-<div>
+<div id="post-summary-list">
     <h2><a href="/post/{{post.id}}">{{post.title}}</a></h2>
     <h3>by {{post.username}} on {{format_date post.date}}</h3>
     <p>{{post.summary}}</p>

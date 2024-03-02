@@ -41,14 +41,14 @@ router.get('/', async (req, res) => {
   }
 });
 
-// users get to see the whole post and the comments on the post
+// logged-in users get to see the whole post and the comments on the post
 router.get('/post/:id', withAuth, async (req, res) => {
   try {
     let output = {};
     // get all posts with the user info and comments
     // requires a nested join to get the user(s) who made the comment(s)
     const onePost = await BlogPost.findByPk(req.params.id, {
-      attributes: { exclude: ['id', 'user_id'] },
+      attributes: { exclude: ['user_id'] },
       // first join gets the User who made the post
       include: [{
         model: User,
@@ -64,6 +64,7 @@ router.get('/post/:id', withAuth, async (req, res) => {
       }]
     });
     // flatten output
+    output.postID = onePost.id;
     output.title = onePost.title;
     output.summary = onePost.summary;
     output.content = onePost.content;
@@ -85,7 +86,48 @@ router.get('/post/:id', withAuth, async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+});
 
+// logged-in users get to see a dashboard that contains their posts and comments
+router.get('/dashboard', withAuth, async (req, res) => {
+  // remember that user_id has been saved in the session object
+  // get a list of all posts by the logged-in user with option to edit or delete
+  const userPosts = await BlogPost.findAll({
+    attributes: ['id', 'title', 'summary', 'content', ['updated_at', 'date']],
+    where: { user_id: req.session.user_id }
+  });
+
+  // serialize output
+  const posts = userPosts.map(post => post.get({ plain: true }));
+
+  // get a list of all comments by the user, with option to edit or delete
+  const userComments = await Comment.findAll({
+    attributes: ['id', 'content', 'post_id', ['created_at', 'date']],
+    where: { user_id: req.session.user_id },
+    include: {
+      model: BlogPost,
+      attributes: [['id', 'post-id'], 'title']
+    }
+  });
+
+  // serialize output
+  const comments = userComments.map(comment => comment.get({ plain: true }));
+
+  console.log(comments);
+
+  // combine them into an object and send to handlebars
+  res.render('dashboard', { posts, comments });
+});
+
+// the login page allows users to log in or create a new account
+router.get('/login', async (req, res) => {
+  // if user it logged in already, go to home page
+  if (req.session.logged_in) {
+    res.redirect('/dashboard');
+    return;
+  }
+  // otherwise reder the login page
+  res.render('login');
 });
 
 module.exports = router;

@@ -7,12 +7,12 @@
     <body>
         <header>
             <nav>
-                <a href="#"><button>Home</button></a>
-                <a href="#"><button>Dashboard</button></a>
+                <a href="/"><button>Home</button></a>
+                <a href="/dashboard"><button>Dashboard</button></a>
                 {{#if logged_in}}
-                <a href="#"><button id="logout">Logout</button></a>
+                <button class="logout">Logout</button>
                 {{else}}
-                <a href="#"><button id="login">Login</button></a>
+                <a href="/login"><button>Login</button></a>
                 {{/if}}
             </nav>
             <h1>The Tech Blog</h1>

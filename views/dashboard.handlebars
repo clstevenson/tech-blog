@@ -1,0 +1,30 @@
+<!--
+     Dashboard:
+     - List all posts and comments by the user
+     - Gives user the ability to edit or delete any posts or comment
+     - see homeRoute '/dashboard' to see the object sent; session also includes user_id
+     - Ability to add new posts
+-->
+
+{{#each posts as |post|}}
+<div id="user-posts">
+    <h2><a href="/post/{{post.id}}">{{post.title}}</a></h2>
+    <h3>{{format_date post.date}}</h3>
+    <h4>{{post.summary}}</h4>
+    <p>{{post.content}}</p>
+    <button class="edit-post">Edit Post</button>
+    <button class="delete-post">Delete Post</button>
+</div>
+{{/each}}
+
+{{#each comments as |comment|}}
+<div id="user-comments">
+    <h3>Comment on post <a href="/post/{{comment.blogpost.post-id}}">"{{comment.blogpost.title}}"</a></h2>
+    <h3>{{format_date comment.date}}</h3>
+    <p>{{comment.content}}</p>
+    <button class="edit-comment">Edit Comment</button>
+    <button class="delete-comment">Delete Comment</button>
+</div>
+{{/each}}
+
+<button class="create-post">Create new post</button>
