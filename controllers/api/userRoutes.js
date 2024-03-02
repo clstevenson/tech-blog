@@ -28,6 +28,7 @@ router.post('/', async (req, res) => {
 // submit username/password (but username can be email address)
 router.post('/login', async (req, res) => {
   try {
+    console.log("Entered /login route");
     const userData = await User.findOne({
       where: {
         // user may input either username or password on login form
@@ -52,9 +53,10 @@ router.post('/login', async (req, res) => {
     }
 
     req.session.save(() => {
+      console.log("Logged in!")
       req.session.user_id = userData.id;
       req.session.logged_in = true;
-      res.json({ user: userData, message: 'You are now logged in!' });
+      res.status(200).json({ user: userData, message: 'You are now logged in!' });
     });
 
   } catch (err) {
