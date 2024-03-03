@@ -1,14 +1,31 @@
-<!-- one post and all associated comments -->
-<div id="one-post" data-post_id="{{postID}}">
-    <h2>{{title}}</h2>
-    <h3>by {{post_username}} on {{format_date date}}</h3>
-    <h4>{{summary}}</h4>
-    <p>{{content}}</p>
+<!-- Template for editing or creating posts -->
+<!-- Need to send the following info: title, summary, content -->
+<!-- (API route can get user-id from req.session) -->
+
+<div class="post-title">
+    <label for="post-title">Post title: </label>
+    <input type="text" id="post-title" name="title" value="{{title}}" />
 </div>
-{{#each comments as |comment|}}
-<div class="comments">
-    <h3>Comment by {{comment.username}} on {{format_date comment.date}}</h3>
-    <p>{{comment.content}}</p>
+
+<div class="post-summary">
+    <label for="post-summary">Summary (teaser): </label>
+    <input type="text" id="post-summary" name="summary" value="{{summary}}" />
 </div>
-{{/each}}
-<button id="add-comment">Add a comment</button>
+
+<div class="post-content">
+    <label for="post-content">Content</label><br />
+    <textarea name="content" id="post-content" rows="10" cols="50">
+{{content}}
+    </textarea>
+</div>
+
+<div>
+    {{#if edit}}
+    <button class="edit-post">Update Post</button>
+    {{else}}
+    <button class="add-post">Create Post</button>
+    {{/if}}
+</div>
+
+
+<script src="./js/post.js"></script>

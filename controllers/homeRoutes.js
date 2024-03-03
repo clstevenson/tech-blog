@@ -25,6 +25,7 @@ router.get('/', async (req, res) => {
         attributes: ['username']
       }
     });
+
     // return object array closer to what is required on the homepage
     const posts = allPosts.map(post => {
       const obj = {};
@@ -81,7 +82,7 @@ router.get('/post/:id', withAuth, async (req, res) => {
     });
     // make sure handlebars knows we are logged in
     output.logged_in = req.session.logged_in;
-    res.render('post', output);
+    res.render('showpost', output);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -123,8 +124,43 @@ router.get('/login', async (req, res) => {
     res.redirect('/dashboard', { logged_in: req.session.logged_in });
     return;
   }
-  // otherwise reder the login page
+  // otherwise render the login page
   res.render('login');
+});
+
+// need route to add a post
+// I think just send them to the page with the user_ID
+router.get('/addpost', withAuth, (req, res) => {
+  try {
+    const output = {
+      logged_in: req.session.logged_in,
+      title: "",
+      summary: "",
+      content: "",
+      edit: false
+    };
+    res.render('post', output);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// need route to edit an existing post
+// need to get info on the post and serve it to the handlebars template
+router.get('/editpost/:id', withAuth, async (req, res) => {
+
+});
+
+// need route to add a comment
+// I think just send them to the page with the user_ID
+router.get('/addcomment', withAuth, (req, res) => {
+
+});
+
+// need route to edit an existing comment
+// need to get info on the comment and serve it to the handlebars template
+router.get('/editcomment/:id', withAuth, async (req, res) => {
+
 });
 
 module.exports = router;

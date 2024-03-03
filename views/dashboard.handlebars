@@ -1,9 +1,9 @@
 <!--
      Dashboard:
-     - List all posts and comments by the user
-     - Gives user the ability to edit or delete any posts or comment
-     - see homeRoute '/dashboard' to see the object sent; session also includes user_id
-     - Ability to add new posts
+   - List all posts and comments by the user
+   - Gives user the ability to edit or delete any posts or comment
+   - see homeRoute '/dashboard' to see the object sent; session also includes user_id
+   - Ability to add new posts
 -->
 
 {{#each posts as |post|}}
@@ -20,14 +20,14 @@
 {{#each comments as |comment|}}
 <div id="user-comments">
     <h3>Comment on post <a href="/post/{{comment.blogpost.post-id}}">"{{comment.blogpost.title}}"</a></h2>
-    <h3>{{format_date comment.date}}</h3>
-    <p>{{comment.content}}</p>
-    <button class="edit-comment" data-id="{{comment.id}}">Edit Comment</button>
-    <button class="delete-comment" data-id="{{comment.id}}">Delete Comment</button>
+        <h3>{{format_date comment.date}}</h3>
+        <p>{{comment.content}}</p>
+        <button class="edit-comment" data-id="{{comment.id}}">Edit Comment</button>
+        <button class="delete-comment" data-id="{{comment.id}}">Delete Comment</button>
 </div>
 {{/each}}
 
-<button class="create-post">Create new post</button>
+<a href="/addpost"><button class="create-post">Create new post</button></a>
 
 <!-- TODO: add client-side JS for CRUD operations with posts and comments -->
 
