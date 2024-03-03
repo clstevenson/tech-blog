@@ -35,7 +35,7 @@ router.get('/', async (req, res) => {
       obj.date = post.updatedAt;
       return obj;
     })
-    res.render('homepage', { posts });
+    res.render('homepage', { posts, logged_in: req.session.logged_in });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -79,9 +79,8 @@ router.get('/post/:id', withAuth, async (req, res) => {
       obj.username = value.user.username;
       return obj;
     });
-    // output.comments = { comments };
+    // make sure handlebars knows we are logged in
     output.logged_in = req.session.logged_in;
-    console.log(output);
     res.render('post', output);
   } catch (err) {
     res.status(500).json(err);
@@ -113,17 +112,15 @@ router.get('/dashboard', withAuth, async (req, res) => {
   // serialize output
   const comments = userComments.map(comment => comment.get({ plain: true }));
 
-  console.log(comments);
-
   // combine them into an object and send to handlebars
-  res.render('dashboard', { posts, comments });
+  res.render('dashboard', { posts, comments, logged_in: req.session.logged_in });
 });
 
 // the login page allows users to log in or create a new account
 router.get('/login', async (req, res) => {
   // if user it logged in already, go to home page
   if (req.session.logged_in) {
-    res.redirect('/dashboard');
+    res.redirect('/dashboard', { logged_in: req.session.logged_in });
     return;
   }
   // otherwise reder the login page

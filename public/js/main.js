@@ -1,4 +1,4 @@
-// scripting for the home page
+// scripting for the front end
 
 const logout = async () => {
   const response = await fetch('/api/users/logout', {
@@ -13,4 +13,6 @@ const logout = async () => {
   }
 }
 
-document.querySelector('button.logout').addEventListener('click', logout);
+document
+  .querySelector('button.logout')
+  .addEventListener('click', logout);
