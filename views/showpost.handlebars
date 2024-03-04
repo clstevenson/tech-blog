@@ -7,8 +7,8 @@
 </div>
 {{#each comments as |comment|}}
 <div class="comments">
-    <h3>Comment by {{comment.username}} on {{format_date comment.date}}</h3>
     <p>{{comment.content}}</p>
+    <p>&mdash; {{comment.username}}, {{format_date comment.date}}</p>
 </div>
 {{/each}}
 
