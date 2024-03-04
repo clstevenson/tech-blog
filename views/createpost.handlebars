@@ -4,28 +4,22 @@
 
 <div class="post-title">
     <label for="post-title">Post title: </label>
-    <input type="text" id="post-title" name="title" value="{{title}}" />
+    <input type="text" id="post-title" name="title"/>
 </div>
 
 <div class="post-summary">
     <label for="post-summary">Summary (teaser): </label>
-    <input type="text" id="post-summary" name="summary" value="{{summary}}" />
+    <input type="text" id="post-summary" name="summary" />
 </div>
 
 <div class="post-content">
     <label for="post-content">Content</label><br />
-    <textarea name="content" id="post-content" rows="10" cols="50">
-{{content}}
-    </textarea>
+    <textarea name="content" id="post-content" rows="10" cols="50"></textarea>
 </div>
 
 <div>
-    {{#if edit}}
-    <button class="edit-post">Update Post</button>
-    {{else}}
     <button class="add-post">Create Post</button>
-    {{/if}}
 </div>
 
 
-<script src="./js/post.js"></script>
+<script src="/js/createpost.js"></script>

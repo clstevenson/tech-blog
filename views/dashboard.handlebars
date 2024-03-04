@@ -6,13 +6,17 @@
    - Ability to add new posts
 -->
 
+<h2 id="dashboard-greeting">Welcome to your Dashboard, {{username}}!</h2>
+
+<p>Below is a list of your posts and comments.</p>
+
 {{#each posts as |post|}}
 <div id="user-posts">
     <h2><a href="/post/{{post.id}}">{{post.title}}</a></h2>
     <h3>{{format_date post.date}}</h3>
     <h4>{{post.summary}}</h4>
     <p>{{post.content}}</p>
-    <button class="edit-post" data-id="{{post.id}}">Edit Post</button>
+    <a href="/editpost/{{post.id}}"> <button class="edit-post">Edit Post</button> </a>
     <button class="delete-post" data-id="{{post.id}}">Delete Post</button>
 </div>
 {{/each}}

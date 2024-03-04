@@ -90,7 +90,6 @@ router.get('/post/:id', withAuth, async (req, res) => {
 
 // logged-in users get to see a dashboard that contains their posts and comments
 router.get('/dashboard', withAuth, async (req, res) => {
-  // remember that user_id has been saved in the session object
   // get a list of all posts by the logged-in user with option to edit or delete
   const userPosts = await BlogPost.findAll({
     attributes: ['id', 'title', 'summary', 'content', ['updated_at', 'date']],
@@ -113,8 +112,13 @@ router.get('/dashboard', withAuth, async (req, res) => {
   // serialize output
   const comments = userComments.map(comment => comment.get({ plain: true }));
 
+  // need the username for the greeting
+  const user = await User.findByPk(req.session.user_id, {
+    attributes: ['username']
+  });
+
   // combine them into an object and send to handlebars
-  res.render('dashboard', { posts, comments, logged_in: req.session.logged_in });
+  res.render('dashboard', { posts, comments, username: user.username, logged_in: req.session.logged_in });
 });
 
 // the login page allows users to log in or create a new account
@@ -132,14 +136,7 @@ router.get('/login', async (req, res) => {
 // I think just send them to the page with the user_ID
 router.get('/addpost', withAuth, (req, res) => {
   try {
-    const output = {
-      logged_in: req.session.logged_in,
-      title: "",
-      summary: "",
-      content: "",
-      edit: false
-    };
-    res.render('post', output);
+    res.render('createpost', {logged_in: req.session.logged_in});
   } catch (err) {
     res.status(500).json(err);
   }
@@ -148,7 +145,21 @@ router.get('/addpost', withAuth, (req, res) => {
 // need route to edit an existing post
 // need to get info on the post and serve it to the handlebars template
 router.get('/editpost/:id', withAuth, async (req, res) => {
-
+  try {
+    // get the current data for the post
+    const postData = await BlogPost.findByPk(req.params.id);
+    const output = {
+      logged_in: req.session.logged_in,
+      edit: true,
+      post_id: req.params.id,
+      title: postData.title,
+      summary: postData.summary,
+      content: postData.content
+    };
+    res.render('editpost', output);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 // need route to add a comment
