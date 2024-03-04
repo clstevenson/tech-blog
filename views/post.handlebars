@@ -20,8 +20,15 @@
 </div>
 
 <div>
+    <!-- Cancel and return to dashboard -->
+    <a href="/dashboard"><button>Cancel</button></a><br />
+    <!-- proceed with addition or update -->
+    {{#if editing}}
     <button class="edit-post" data-ID="{{post_id}}">Update Post</button>
+    {{else}}
+    <button class="add-post">Create Post</button>
+    {{/if}}
 </div>
 
 
-<script src="/js/editpost.js"></script>
+<script src="/js/post.js"></script>

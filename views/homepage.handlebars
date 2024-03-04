@@ -1,4 +1,9 @@
 <!-- list of posts -->
+{{#if logged_in}}
+<p>Click on any post to view its content and comments</p>
+{{else}}
+<p>Once you <a href="/login">log in</a> you can click on a post to view its content and comments.</p>
+{{/if}}
 {{#each posts as |post|}}
 <div id="post-summary-list">
     <h2><a href="/post/{{post.id}}">{{post.title}}</a></h2>

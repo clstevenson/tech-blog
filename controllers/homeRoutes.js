@@ -136,7 +136,14 @@ router.get('/login', async (req, res) => {
 // I think just send them to the page with the user_ID
 router.get('/addpost', withAuth, (req, res) => {
   try {
-    res.render('createpost', {logged_in: req.session.logged_in});
+    const output = {
+      logged_in: req.session.logged_in,
+      editing: false,
+      title: '',
+      summary: '',
+      content: ''
+    };
+    res.render('post', {logged_in: req.session.logged_in});
   } catch (err) {
     res.status(500).json(err);
   }
@@ -150,13 +157,13 @@ router.get('/editpost/:id', withAuth, async (req, res) => {
     const postData = await BlogPost.findByPk(req.params.id);
     const output = {
       logged_in: req.session.logged_in,
-      edit: true,
+      editing: true,
       post_id: req.params.id,
       title: postData.title,
       summary: postData.summary,
       content: postData.content
     };
-    res.render('editpost', output);
+    res.render('post', output);
   } catch (err) {
     res.status(500).json(err);
   }
