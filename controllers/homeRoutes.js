@@ -178,7 +178,38 @@ router.get('/addcomment', withAuth, (req, res) => {
 // need route to edit an existing comment
 // need to get info on the comment and serve it to the handlebars template
 router.get('/editcomment/:id', withAuth, async (req, res) => {
+  try {
+    const commentID = req.params.id;
+    // get the current data for the comment
+    const commentData = await Comment.findByPk(commentID, {
+      attributes: [['id', 'comment_id'],'content', ['updated_at', 'comment_date'], 'post_id'],
+    });
+    // output for the render
+    const comment = commentData.get({ plain: true });
 
+    // get the post data associated with the comment
+    const postData = await BlogPost.findByPk(comment.post_id, {
+      attributes: ['title', 'summary', ['content', 'post_content'], ['updated_at', 'post_date']],
+      include: {
+        model: User,
+        attributes: ['username']
+      }
+    });
+    // add to the output data
+    const post = postData.get({ plain: true });
+
+    const output = {
+      logged_in: req.session.logged_in,
+      editing: true,
+      ...comment,
+      ...post
+    };
+
+    // send to the handlebars template for rendering
+    res.render('comment', output);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;

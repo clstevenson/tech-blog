@@ -16,7 +16,9 @@
     <h3>{{format_date post.date}}</h3>
     <h4>{{post.summary}}</h4>
     <p>{{post.content}}</p>
-    <a href="/editpost/{{post.id}}"> <button class="edit-post">Edit Post</button> </a>
+    <a href="/editpost/{{post.id}}">
+        <button class="edit-post">Edit Post</button>
+    </a>
     <button class="delete-post" data-id="{{post.id}}">Delete Post</button>
 </div>
 {{/each}}
@@ -26,7 +28,11 @@
     <h3>Comment on post <a href="/post/{{comment.blogpost.post-id}}">"{{comment.blogpost.title}}"</a></h2>
         <h3>{{format_date comment.date}}</h3>
         <p>{{comment.content}}</p>
-        <button class="edit-comment" data-id="{{comment.id}}">Edit Comment</button>
+
+        <a href="/editcomment/{{comment.id}}">
+            <button class="edit-comment" data-id="{{comment.id}}">Edit Comment</button>
+        </a>
+
         <button class="delete-comment" data-id="{{comment.id}}">Delete Comment</button>
 </div>
 {{/each}}

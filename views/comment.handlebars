@@ -1,1 +1,26 @@
 <!-- Template for editing or creating comments -->
+
+<!-- Display the post being commented upon -->
+<p>You commented on the following post by {{user.username}} last updated on {{format_date post_date}}.</p>
+
+<h3>{{title}}</h3>
+<h4>{{summary}}</h4>
+<p>{{post_content}}</p>
+
+<!-- Display the user's comment below the post in an editable text box -->
+<div class="comment">
+    <p>Your comment was made {{format_date comment_date}}; edit below.</p>
+    <textarea name="comment" class="update-comment" rows="3" cols="40">{{content}}</textarea>
+</div>
+
+<!-- two buttons, one to cancel and one to update the comment -->
+<div class="buttons">
+    <a href="/dashboard"><button>Cancel</button></a><br />
+    {{#if editing}}
+    <button class="update"' data-id="{{comment_id}}">Update Comment</button>
+    {{else}}
+    <button class="create">Create Comment</button>
+    {{/if}}
+</div>
+
+<script src="/js/comment.js"></script>

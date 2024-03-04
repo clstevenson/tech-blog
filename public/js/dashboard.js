@@ -33,6 +33,7 @@ const deleteComment = async (comment_id) => {
     };
   };
 }
+
 /*
  * Event listeners: there may be multiple buttons, need to supply
  * listeners for each one and get the ID from the data attribute
@@ -40,6 +41,7 @@ const deleteComment = async (comment_id) => {
 document.querySelectorAll('button.delete-post').forEach((el) => {
   el.addEventListener('click', (evt) => deletePost(evt.target.dataset.id));
 });
+
 document.querySelectorAll('button.delete-comment').forEach((el) => {
   el.addEventListener('click', (evt) => deleteComment(evt.target.dataset.id));
 });
