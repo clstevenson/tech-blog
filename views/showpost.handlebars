@@ -11,4 +11,14 @@
     <p>{{comment.content}}</p>
 </div>
 {{/each}}
-<button id="add-comment" data-id={{postID}}>Add a comment</button>
+
+<div id="add-comment-content">
+    <!-- elements in this div are initially hidden on document load -->
+    <textarea name="comment" rows="3" cols="40"></textarea>
+    <button class="cancel_comment">Cancel</button>
+    <button class="submit_comment" data-id={{postID}}>Submit comment</button>
+</div>
+
+<button class="create_comment" data-id={{postID}}>Add a comment</button>
+
+<script src="/js/addcomment.js"></script>

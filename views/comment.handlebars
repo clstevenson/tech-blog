@@ -16,11 +16,7 @@
 <!-- two buttons, one to cancel and one to update the comment -->
 <div class="buttons">
     <a href="/dashboard"><button>Cancel</button></a><br />
-    {{#if editing}}
     <button class="update"' data-id="{{comment_id}}">Update Comment</button>
-    {{else}}
-    <button class="create">Create Comment</button>
-    {{/if}}
 </div>
 
 <script src="/js/comment.js"></script>

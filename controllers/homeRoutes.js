@@ -169,12 +169,6 @@ router.get('/editpost/:id', withAuth, async (req, res) => {
   }
 });
 
-// need route to add a comment
-// I think just send them to the page with the user_ID
-router.get('/addcomment', withAuth, (req, res) => {
-
-});
-
 // need route to edit an existing comment
 // need to get info on the comment and serve it to the handlebars template
 router.get('/editcomment/:id', withAuth, async (req, res) => {
@@ -200,7 +194,6 @@ router.get('/editcomment/:id', withAuth, async (req, res) => {
 
     const output = {
       logged_in: req.session.logged_in,
-      editing: true,
       ...comment,
       ...post
     };

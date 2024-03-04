@@ -1,7 +1,6 @@
-// client-side JS to add or edit comments
+// client-side JS to edit comments
 
 const updateComment = async (evt) => {
-
   const content = document.querySelector('textarea.update-comment').value;
   const commentID = evt.target.dataset.id;
 
@@ -20,11 +19,7 @@ const updateComment = async (evt) => {
   }; // end outer IF
 };
 
-// set event listeners; only one of the following will work
-try {
-  document
-    .querySelector('button.update')
-    .addEventListener('click', updateComment);
-} catch (err) {
-  // Do something
-}
+// set event listener
+document
+  .querySelector('button.update')
+  .addEventListener('click', updateComment);
