@@ -1,44 +1,42 @@
-<!--
-     Dashboard:
-   - List all posts and comments by the user
-   - Gives user the ability to edit or delete any posts or comment
-   - see homeRoute '/dashboard' to see the object sent; session also includes user_id
-   - Ability to add new posts
--->
+<!---------------------------------------------------------------------------->
+<!--                           Dashboard for User                          -->
+<!---------------------------------------------------------------------------->
 
-<h2 id="dashboard-greeting">Welcome to your Dashboard, {{username}}!</h2>
+<!-- Can view/edit/delete their own posts and comments -->
+<!-- Can add new posts -->
 
-<p>Below is a list of your posts and comments. You can <a href="/">go to the homepage</a> to view all the posts.</p>
+<div class="m-2">
+    <h2 id="dashboard-greeting" class="m2 is-size-5">Welcome to your Dashboard, {{username}}!</h2>
+    <p>Below is a list of your posts and comments. You can <a href="/">go to the homepage</a> to view all the posts.</p>
+</div>
 
 {{#each posts as |post|}}
-<div id="user-posts">
-    <h2><a href="/post/{{post.id}}">{{post.title}}</a></h2>
-    <h3>{{format_date post.date}}</h3>
-    <h4>{{post.summary}}</h4>
-    <p>{{post.content}}</p>
+<div id="user-posts" class="box">
+    <h2 class="card-header m-2 is-size-4"><a href="/post/{{post.id}}">{{post.title}}</a></h2>
+    <span class="is-size-7 is-pulled-right">{{format_date post.date}}</span>
+    <h4 class="is-size-5 m-1">{{post.summary}}</h4>
+    <p class="is-size-6 m-1 mb-3">{{post.content}}</p>
     <a href="/editpost/{{post.id}}">
-        <button class="edit-post">Edit Post</button>
+        <button class="edit-post button is-small">Edit Post</button>
     </a>
-    <button class="delete-post" data-id="{{post.id}}">Delete Post</button>
+    <button class="delete-post button is-small" data-id="{{post.id}}">Delete Post</button>
 </div>
 {{/each}}
 
 {{#each comments as |comment|}}
-<div id="user-comments">
-    <h3>Comment on post <a href="/post/{{comment.blogpost.post-id}}">"{{comment.blogpost.title}}"</a></h2>
-        <h3>{{format_date comment.date}}</h3>
-        <p>{{comment.content}}</p>
+<div id="user-comments" class="box">
+    <h3 class="card-header is-size-5">Comment on &nbsp; <a href="/post/{{comment.blogpost.post-id}}">{{comment.blogpost.title}}</a></h2>
+        <span class="is-size-7 is-pulled-right">{{format_date comment.date}}</span>
+        <p class="is-size-6 m-1 mb-2">{{comment.content}}</p>
 
         <a href="/editcomment/{{comment.id}}">
-            <button class="edit-comment" data-id="{{comment.id}}">Edit Comment</button>
+            <button class="edit-comment button is-small" data-id="{{comment.id}}">Edit Comment</button>
         </a>
 
-        <button class="delete-comment" data-id="{{comment.id}}">Delete Comment</button>
+        <button class="delete-comment button is-small" data-id="{{comment.id}}">Delete Comment</button>
 </div>
 {{/each}}
 
-<a href="/addpost"><button class="create-post">Create new post</button></a>
-
-<!-- TODO: add client-side JS for CRUD operations with posts and comments -->
+<a href="/addpost"><button class="create-post button is-primary is-medium">Create new post</button></a>
 
 <script src="./js/dashboard.js"></script>

@@ -1,24 +1,25 @@
 <!-- one post and all associated comments -->
-<div id="one-post">
-    <h2>{{title}}</h2>
-    <h3>by {{post_username}} on {{format_date date}}</h3>
-    <h4>{{summary}}</h4>
+<div id="one-post" class="box m-1">
+    <h2 class="card-header is-size-4 m-1">{{title}}</h2>
+    <span class="is-size-7 is-pulled-right">by {{post_username}} on {{format_date date}}</span>
+    <h4 class="is-size-5 m-2 mb-4">{{summary}}</h4>
     <p>{{content}}</p>
 </div>
+
 {{#each comments as |comment|}}
-<div class="comments">
-    <p>{{comment.content}}</p>
-    <p>&mdash; {{comment.username}}, {{format_date comment.date}}</p>
+<div class="comments box m-1">
+    <p class="is-size-6 m-1">{{comment.content}}</p>
+    <p class="is-size-7 is-pulled-right">&mdash; comment by {{comment.username}}, {{format_date comment.date}}</p>
 </div>
 {{/each}}
 
 <div id="add-comment-content">
     <!-- elements in this div are initially hidden on document load -->
-    <textarea name="comment" rows="3" cols="40"></textarea>
-    <button class="cancel_comment">Cancel</button>
-    <button class="submit_comment" data-id={{postID}}>Submit comment</button>
+    <textarea name="comment" class="textarea m-1"></textarea>
+    <button class="submit_comment button is-primary m-2" data-id={{postID}}>Submit comment</button>
+    <button class="cancel_comment button is-warning m-2">Cancel</button>
 </div>
 
-<button class="create_comment" data-id={{postID}}>Add a comment</button>
+<button class="create_comment button is-primary" data-id={{postID}}>Add a comment</button>
 
 <script src="/js/addcomment.js"></script>

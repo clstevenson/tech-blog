@@ -2,21 +2,23 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Tech Blog</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
         <link rel="stylesheet" href="/css/style.css">
     </head>
-    <body>
+    <body class="m-5 container is-widescreen">
         <header>
-            <nav>
-                <a href="/"><button>Home</button></a>
-                <a href="/dashboard"><button>Dashboard</button></a>
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <a href="/"><button class="button is-link m-1">Home</button></a>
+                <a href="/dashboard"><button class="button is-link m-1">Dashboard</button></a>
                 {{#if logged_in}}
-                <button class="logout">Logout</button>
+                <button class="button logout is-link m-1">Logout</button>
                 {{else}}
-                <a href="/login"><button>Login</button></a>
+                <a href="/login"><button class="button is-link m-1">Login</button></a>
                 {{/if}}
             </nav>
-            <h1>The Tech Blog</h1>
+            <h1 class="title m-2">The Tech Blog</h1>
         </header>
         <main>
             {{{body}}}

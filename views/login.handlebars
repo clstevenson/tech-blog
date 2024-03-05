@@ -1,24 +1,42 @@
-<div id="login">
-    <label for="username-login">Username or email:</label>
-    <input type="text" id="username-login"/>
+<!---------------------------------------------------------------------------->
+<!--                            Login/Signup Page                            -->
+<!---------------------------------------------------------------------------->
 
-    <label for="password-login">Password:</label>
-    <input type="password" id="password-login"/>
+<div class="box">
+    <h2 class="card-header is-size-4 m-2">Existing users login here</h2>
+    <div id="login" class="field columns m-2">
+        <div class="column">
+            <label for="username-login" class="label">Username or email:</label>
+            <input type="text" id="username-login" class="input is-primary"/>
+            <button class="button m-1 is-primary">login</button>
+        </div>
 
-    <button>login</button>
+        <div class="column">
+            <label for="password-login" class="label">Password:</label>
+            <input type="password" id="password-login" class="input is-primary"/>
+        </div>
+    </div>
 </div>
 
-<div id="signup">
-    <label for="username-signup">Username:</label>
-    <input type="text" id="username-signup"/>
+<div class="box">
+    <h2 class="card-header is-size-4 m-2">New users sign up below</h2>
+    <div id="signup" class="field columns m-2">
+        <div class="column">
+            <label for="username-signup" class="label">Username:</label>
+            <input type="text" id="username-signup" class="input is-primary"/>
+            <button class="button m-1 is-primary">Sign Up</button>
+        </div>
 
-    <label for="email-signup">Email:</label>
-    <input type="text" id="email-signup"/>
+        <div class="column">
+            <label for="email-signup" class="label">Email:</label>
+            <input type="text" id="email-signup" class="input is-primary"/>
+        </div>
 
-    <label for="password-signup">Password:</label>
-    <input type="password" id="password-signup"/>
-
-    <button>Sign Up</button>
+        <div class="column">
+            <label for="password-signup" class="label">Password:</label>
+            <input type="password" id="password-signup" class="input is-primary"/>
+        </div>
+    </div>
 </div>
 
 <script src="./js/login.js"></script>

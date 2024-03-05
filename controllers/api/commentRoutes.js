@@ -37,8 +37,6 @@ router.put('/:id', withAuth, async (req, res) => {
     const updateComment = await Comment.update(req.body, {
       where: { id: req.params.id, user_id: req.session.user_id }
     });
-    console.log(`Comment ID is ${req.params.id}, user ID is ${req.session.user_id}`);
-    console.log(updateComment);
 
     res.status(200).json(updateComment);
 

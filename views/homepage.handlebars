@@ -1,13 +1,25 @@
-<!-- list of posts -->
+<!---------------------------------------------------------------------------->
+<!--                                Homepage                               -->
+<!---------------------------------------------------------------------------->
+
+<!-- Lists all posts with summaries and clickable links -->
+<!-- Link to complete post and its comments only available to logged-in user -->
+
 {{#if logged_in}}
 <p>Click on any post to view its content and comments</p>
 {{else}}
-<p>Once you <a href="/login">log in</a> you can click on a post to view its content and comments.</p>
+<p class="m-2 is-size-6">Once you <a href="/login">log in</a> you can click on a post to view its content and comments.</p>
 {{/if}}
 {{#each posts as |post|}}
-<div id="post-summary-list">
-    <h2><a href="/post/{{post.id}}">{{post.title}}</a></h2>
-    <h3>by {{post.username}} on {{format_date post.date}}</h3>
-    <p>{{post.summary}}</p>
+<div id="post-summary-list" class="card">
+    <div class="m-1">
+        <span class="is-size-7 is-pulled-right">by {{post.username}} on {{format_date post.date}}</span>
+        <h2 class="is-size-4">
+            <a href="/post/{{post.id}}">
+                {{post.title}}
+            </a></h2>
+        <!-- <p class="card-header is-size-7">by {{post.username}} on {{format_date post.date}}</p> -->
+    </div>
+    <p class="card-content is-size-5 mb-4">{{post.summary}}</p>
 </div>
 {{/each}}
