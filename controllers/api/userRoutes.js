@@ -1,5 +1,10 @@
+///////////////////////////////////////////////////////////////////////////////
+//                              User API Routes                              //
+///////////////////////////////////////////////////////////////////////////////
+
 /*
- * User login and logout routes
+ * APIs to create a new user, to authenticate an existing user, and to log out
+ * (Arguably the latter two should be in home routes?)
  */
 
 const router = require('express').Router();
@@ -23,9 +28,9 @@ router.post('/', async (req, res) => {
   }
 });
 
-// check login input against User table in DB
-// full route will be /api/users/login
-// submit username/password (but username can be email address)
+// Check login input against User table in DB
+// Full route will be /api/users/login
+// Submit username/password (but username can be email address)
 router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({
@@ -62,6 +67,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
+// Logging out destroys the session/cookie
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {

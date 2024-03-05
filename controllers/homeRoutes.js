@@ -1,4 +1,19 @@
-// These are the routes to send to the handlebar templates
+///////////////////////////////////////////////////////////////////////////////
+//                                Home Routes                                //
+///////////////////////////////////////////////////////////////////////////////
+
+/*
+ * These are the routes to send to the handlebar templates. Currently they consist of:
+ *
+ * - the homepage route, '/'
+ * - the dashboard route for logged-in users: '/dashboard'
+ * - the login route to log in or create a new user account: '/login'
+ * - the route to show a single post and its comments, and to add new comments: '/post/id'
+ * - the route to add a new post: '/addpost'
+ * - the route to edit a previous post: '/editpost/id'
+ * - the route to edit a previous comment: '/editcomment/id'
+ */
+
 const router = require('express').Router();
 const session = require('express-session');
 const { BlogPost, User, Comment } = require('../models');

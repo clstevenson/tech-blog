@@ -1,3 +1,13 @@
+///////////////////////////////////////////////////////////////////////////////
+//                            Blogpost API Routes                            //
+///////////////////////////////////////////////////////////////////////////////
+
+/*
+ * APIs to create, delete, or edit blog posts.
+ * Users are only allowed to perform these operations on their
+ * own posts.
+ */
+
 const router = require('express').Router();
 const session = require('express-session');
 const { BlogPost, User, Comment } = require('../../models');
@@ -68,6 +78,5 @@ router.put('/:id', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
-
 
 module.exports = router;

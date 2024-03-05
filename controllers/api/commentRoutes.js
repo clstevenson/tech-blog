@@ -1,3 +1,13 @@
+///////////////////////////////////////////////////////////////////////////////
+//                             Comment API Routes                            //
+///////////////////////////////////////////////////////////////////////////////
+
+/*
+ * APIs to create, delete, or edit comments on blog posts.
+ * Users are only allowed to perform these operations on their
+ * own comments.
+ */
+
 const router = require('express').Router();
 const session = require('express-session');
 const { Comment } = require('../../models');
